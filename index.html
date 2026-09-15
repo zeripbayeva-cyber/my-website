@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Сабақ рефлексиясы</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 10% 20%, #fff4b8 0, transparent 25%),
+        radial-gradient(circle at 90% 20%, #ffcfe3 0, transparent 25%),
+        linear-gradient(135deg,#dff7ff,#f5e7ff);
+    color:#263238;
+}
+
+header{
+    text-align:center;
+    padding:45px 20px 25px;
+}
+
+header h1{
+    margin:0;
+    font-size:52px;
+    color:#5b45d6;
+}
+
+header p{
+    font-size:21px;
+    color:#555;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:16px;
+}
+
+.card{
+    background:white;
+    border-radius:25px;
+    padding:25px 15px;
+    text-align:center;
+    cursor:pointer;
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+    transition:.3s;
+    border:4px solid transparent;
+}
+
+.card:hover{
+    transform:translateY(-10px) scale(1.03);
+}
+
+.card:nth-child(1){
+    background:linear-gradient(180deg,#d9ffe2,#ffffff);
+    border-color:#6edb8c;
+}
+
+.card:nth-child(2){
+    background:linear-gradient(180deg,#dceeff,#ffffff);
+    border-color:#69b7ff;
+}
+
+.card:nth-child(3){
+    background:linear-gradient(180deg,#fff3c7,#ffffff);
+    border-color:#ffc94d;
+}
+
+.card:nth-child(4){
+    background:linear-gradient(180deg,#ffdce6,#ffffff);
+    border-color:#ff7b9c;
+}
+
+.card:nth-child(5){
+    background:linear-gradient(180deg,#eadcff,#ffffff);
+    border-color:#a77cff;
+}
+
+.emoji{
+    font-size:70px;
+    transition:.3s;
+}
+
+.card:hover .emoji{
+    transform:scale(1.2) rotate(5deg);
+}
+
+.card h2{
+    font-size:20px;
+}
+
+.card p{
+    font-size:15px;
+    color:#666;
+    min-height:40px;
+}
+
+.vote{
+    border:0;
+    padding:11px 22px;
+    border-radius:30px;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    background:#6555d9;
+}
+
+.result{
+    margin-top:35px;
+    background:rgba(255,255,255,.85);
+    border-radius:28px;
+    padding:28px;
+    box-shadow:0 10px 30px rgba(0,0,0,.10);
+}
+
+.result h2{
+    color:#5b45d6;
+}
+
+.numbers{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:12px;
+}
+
+.number{
+    text-align:center;
+    padding:18px 5px;
+    border-radius:18px;
+    background:#f2efff;
+}
+
+.number strong{
+    display:block;
+    font-size:35px;
+    color:#5b45d6;
+}
+
+#message{
+    margin-top:25px;
+    padding:20px;
+    text-align:center;
+    border-radius:20px;
+    background:linear-gradient(90deg,#fff2b8,#ffd9ea);
+    font-size:21px;
+    font-weight:bold;
+}
+
+.reset{
+    display:block;
+    margin:20px auto 0;
+    border:0;
+    padding:12px 25px;
+    border-radius:30px;
+    background:#ff5f7e;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.quote{
+    text-align:center;
+    margin:35px 0;
+    padding:30px;
+    border-radius:25px;
+    background:linear-gradient(135deg,#6655d9,#9b65e8);
+    color:white;
+}
+
+.quote h2{
+    font-size:27px;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    color:#666;
+}
+
+@media(max-width:900px){
+    .cards{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .numbers{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:500px){
+    .cards,.numbers{
+        grid-template-columns:1fr;
+    }
+
+    header h1{
+        font-size:38px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div style="font-size:35px">🎓✨📚</div>
+    <h1>Рефлексия</h1>
+    <p>Бүгінгі сабақтан алған әсеріңізді таңдаңыз</p>
+</header>
+
+<div class="container">
+
+<div class="cards">
+
+<div class="card" onclick="vote(0)">
+    <div class="emoji">🤩</div>
+    <h2>Барлығын түсіндім</h2>
+    <p>Тақырып өте түсінікті болды!</p>
+    <button class="vote">Супер!</button>
+</div>
+
+<div class="card" onclick="vote(1)">
+    <div class="emoji">👍</div>
+    <h2>Жақсы түсіндім</h2>
+    <p>Негізгі ойды түсіндім</p>
+    <button class="vote">Жақсы!</button>
+</div>
+
+<div class="card" onclick="vote(2)">
+    <div class="emoji">🤔</div>
+<h2>Сұрағым бар</h2>
+    <p>Кейбір жерлерін нақтылау қажет</p>
+    <button class="vote">Сұраймын!</button>
+</div>
+
+<div class="card" onclick="vote(3)">
+    <div class="emoji">😕</div>
+    <h2>Қиын болды</h2>
+    <p>Тақырыпты қайта қарау керек</p>
+    <button class="vote">Қайталаймын!</button>
+</div>
+
+<div class="card" onclick="vote(4)">
+    <div class="emoji">🥰</div>
+    <h2>Өте қызықты болды</h2>
+    <p>Осындай сабақтар көбірек болсын!</p>
+    <button class="vote">Рахмет!</button>
+</div>
+
+</div>
+
+<div class="result">
+
+<h2>📊 Қатысушылар нәтижесі</h2>
+
+<div class="numbers">
+
+<div class="number">
+<strong id="n0">0</strong>
+Түсіндім
+</div>
+
+<div class="number">
+<strong id="n1">0</strong>
+Жақсы
+</div>
+
+<div class="number">
+<strong id="n2">0</strong>
+Сұрағым бар
+</div>
+
+<div class="number">
+<strong id="n3">0</strong>
+Қиын болды
+</div>
+
+<div class="number">
+<strong id="n4">0</strong>
+Қызықты
+</div>
+
+</div>
+
+<div id="message">
+✨ Өз әсеріңізді таңдаңыз!
+</div>
+
+<button class="reset" onclick="resetVotes()">
+🔄 Нәтижені тазалау
+</button>
+
+</div>
+
+<div class="quote">
+<h2>💡 «Бүгінгі кері байланыс — ертеңгі жақсы нәтиже!»</h2>
+<p>Бірге үйренеміз, бірге өсеміз ❤️</p>
+</div>
+
+</div>
+
+<footer>
+🎓 Білімді ұрпақ – жарқын болашақ!<br><br>
+№27 орта мектеп-лицейі
+</footer>
+
+<script>
+
+let votes=[0,0,0,0,0];
+
+let messages=[
+"🎉 Керемет! Тақырыпты толық меңгердіңіз!",
+"👏 Жарайсыз! Жақсы нәтиже!",
+"💡 Сұрақ қою — білімге бастар жол!",
+"📚 Бірге қайталасақ, бәрі түсінікті болады!",
+"❤️ Сабақ ұнағанына қуаныштымыз!"
+];
+
+function vote(i){
+
+votes[i]++;
+
+document.getElementById("n"+i).innerText=votes[i];
+
+document.getElementById("message").innerHTML=messages[i];
+
+}
+
+function resetVotes(){
+
+votes=[0,0,0,0,0];
+
+for(let i=0;i<5;i++){
+document.getElementById("n"+i).innerText=0;
+}
+
+document.getElementById("message").innerHTML=
+"✨ Өз әсеріңізді таңдаңыз!";
+
+}
+
+</script>
+
+</body>
+</html>
